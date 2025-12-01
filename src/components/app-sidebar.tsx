@@ -10,6 +10,9 @@ import {
   PieChart,
   ShoppingBag,
   UserLock,
+  Users,
+  Package,
+  FolderOpen,
 } from "lucide-react";
 import * as React from "react";
 
@@ -28,23 +31,23 @@ import { TeamSwitcher } from "./team-switcher";
 // This is sample data.
 const data = {
   user: {
-    name: "Footprint",
-    email: "support@Footprint.com",
+    name: "Admin User",
+    email: "admin@oracle.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Footprint Inc",
+      name: "Oracle Sales",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Footprint Inc",
+      name: "Oracle Sales",
       logo: AudioWaveform,
       plan: "Startup",
     },
     {
-      name: "Footprint Inc",
+      name: "Oracle Sales",
       logo: Command,
       plan: "Free",
     },
@@ -52,7 +55,7 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/",
       icon: LayoutDashboard,
       isActive: true,
       items: [],
@@ -64,31 +67,32 @@ const data = {
       items: [
         {
           title: "Products",
-          url: "#",
+          url: "/products",
         },
         {
           title: "Categories",
-          url: "#",
-        },
-        {
-          title: "Attributes",
-          url: "#",
-        },
-        {
-          title: "Coupon",
-          url: "#",
+          url: "/categories",
         },
       ],
     },
     {
-      title: "Customers",
+      title: "People",
       url: "#",
-      icon: UserLock,
-      items: [],
+      icon: Users,
+      items: [
+        {
+          title: "Customers",
+          url: "/customers",
+        },
+        {
+          title: "Employees",
+          url: "/employees",
+        },
+      ],
     },
     {
       title: "Orders",
-      url: "#",
+      url: "/orders",
       icon: ShoppingBag,
       items: [],
     },
