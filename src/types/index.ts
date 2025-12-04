@@ -15,6 +15,29 @@ export interface UpdateCategoryDto {
   description?: string;
 }
 
+// Product Variant Types
+export interface ProductVariant {
+  variantId: number;
+  productId: number;
+  size: string | null;
+  color: string | null;
+  stock: number;
+  product?: Product;
+}
+
+export interface CreateProductVariantDto {
+  productId: number;
+  size?: string | null;
+  color?: string | null;
+  stock: number;
+}
+
+export interface UpdateProductVariantDto {
+  size?: string | null;
+  color?: string | null;
+  stock?: number;
+}
+
 // Product Types
 export interface Product {
   productId: number;
@@ -23,6 +46,7 @@ export interface Product {
   quantity: number;
   categoryId: number;
   category?: Category;
+  variants?: ProductVariant[];
 }
 
 export interface CreateProductDto {
@@ -30,6 +54,11 @@ export interface CreateProductDto {
   price: number;
   quantity: number;
   categoryId: number;
+  variants?: Array<{
+    size?: string | null;
+    color?: string | null;
+    stock: number;
+  }>;
 }
 
 export interface UpdateProductDto {
@@ -37,6 +66,11 @@ export interface UpdateProductDto {
   price?: number;
   quantity?: number;
   categoryId?: number;
+  variants?: Array<{
+    size?: string | null;
+    color?: string | null;
+    stock: number;
+  }>;
 }
 
 // Employee Types
@@ -118,23 +152,30 @@ export interface UpdateOrderDto {
 export interface OrderDetail {
   orderDetailId: number;
   orderId: number;
-  productId: number;
+  variantId: number;
   quantity: number;
   unitPrice: number;
   order?: Order;
-  product?: Product;
+  variant?: ProductVariant;
 }
 
 export interface CreateOrderDetailDto {
   orderId: number;
-  productId: number;
+  variantId: number;
   quantity: number;
   unitPrice: number;
 }
 
 export interface UpdateOrderDetailDto {
   orderId?: number;
-  productId?: number;
+  variantId?: number;
   quantity?: number;
   unitPrice?: number;
+}
+
+// POS Cart Types
+export interface CartItem {
+  variant: ProductVariant;
+  product: Product;
+  quantity: number;
 }

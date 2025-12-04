@@ -19,7 +19,6 @@ import {
   Users,
   UserCircle,
   FolderOpen,
-  TrendingUp,
   DollarSign,
 } from "lucide-react";
 

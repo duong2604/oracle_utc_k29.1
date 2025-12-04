@@ -17,9 +17,9 @@ export const useCategories = () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
       toast.success("Category created successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to create category"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });
@@ -31,9 +31,9 @@ export const useCategories = () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
       toast.success("Category updated successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to update category"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });
@@ -44,9 +44,9 @@ export const useCategories = () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
       toast.success("Category deleted successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to delete category"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });

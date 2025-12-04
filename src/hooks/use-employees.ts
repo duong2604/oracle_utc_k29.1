@@ -17,9 +17,9 @@ export const useEmployees = () => {
       queryClient.invalidateQueries({ queryKey: ["employees"] });
       toast.success("Employee created successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to create employee"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });
@@ -31,9 +31,9 @@ export const useEmployees = () => {
       queryClient.invalidateQueries({ queryKey: ["employees"] });
       toast.success("Employee updated successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to update employee"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });
@@ -44,9 +44,9 @@ export const useEmployees = () => {
       queryClient.invalidateQueries({ queryKey: ["employees"] });
       toast.success("Employee deleted successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to delete employee"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });

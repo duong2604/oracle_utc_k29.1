@@ -17,9 +17,9 @@ export const useCustomers = () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });
       toast.success("Customer created successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to create customer"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });
@@ -31,9 +31,9 @@ export const useCustomers = () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });
       toast.success("Customer updated successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to update customer"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });
@@ -44,9 +44,9 @@ export const useCustomers = () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });
       toast.success("Customer deleted successfully");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast.error(
-        error?.response?.data?.message || "Failed to delete customer"
+        error instanceof Error ? error.message : "Operation failed"
       );
     },
   });

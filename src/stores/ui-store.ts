@@ -4,7 +4,7 @@ interface DialogState {
   isOpen: boolean;
   title: string;
   mode: "create" | "edit" | "view";
-  data?: any;
+  data?: unknown;
 }
 
 interface UIStore {
@@ -16,19 +16,28 @@ interface UIStore {
   orderDialog: DialogState;
 
   // Dialog actions
-  openCategoryDialog: (mode: "create" | "edit" | "view", data?: any) => void;
+  openCategoryDialog: (
+    mode: "create" | "edit" | "view",
+    data?: unknown
+  ) => void;
   closeCategoryDialog: () => void;
 
-  openProductDialog: (mode: "create" | "edit" | "view", data?: any) => void;
+  openProductDialog: (mode: "create" | "edit" | "view", data?: unknown) => void;
   closeProductDialog: () => void;
 
-  openEmployeeDialog: (mode: "create" | "edit" | "view", data?: any) => void;
+  openEmployeeDialog: (
+    mode: "create" | "edit" | "view",
+    data?: unknown
+  ) => void;
   closeEmployeeDialog: () => void;
 
-  openCustomerDialog: (mode: "create" | "edit" | "view", data?: any) => void;
+  openCustomerDialog: (
+    mode: "create" | "edit" | "view",
+    data?: unknown
+  ) => void;
   closeCustomerDialog: () => void;
 
-  openOrderDialog: (mode: "create" | "edit" | "view", data?: any) => void;
+  openOrderDialog: (mode: "create" | "edit" | "view", data?: unknown) => void;
   closeOrderDialog: () => void;
 }
 

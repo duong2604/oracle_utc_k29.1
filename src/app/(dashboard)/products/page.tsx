@@ -92,6 +92,23 @@ export default function ProductsPage() {
       },
     },
     {
+      accessorKey: "variants",
+      header: "Variants",
+      cell: ({ row }) => {
+        const variants = row.original.variants;
+        if (!variants || variants.length === 0) {
+          return (
+            <span className="text-muted-foreground text-sm">No variants</span>
+          );
+        }
+        return (
+          <div className="flex items-center gap-1">
+            <Badge variant="secondary">{variants.length} variant(s)</Badge>
+          </div>
+        );
+      },
+    },
+    {
       id: "actions",
       cell: ({ row }) => {
         const product = row.original;

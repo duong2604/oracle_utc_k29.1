@@ -9,10 +9,8 @@ import {
   LayoutDashboard,
   PieChart,
   ShoppingBag,
-  UserLock,
   Users,
-  Package,
-  FolderOpen,
+  Store,
 } from "lucide-react";
 import * as React from "react";
 
@@ -58,6 +56,12 @@ const data = {
       url: "/",
       icon: LayoutDashboard,
       isActive: true,
+      items: [],
+    },
+    {
+      title: "POS System",
+      url: "/pos",
+      icon: Store,
       items: [],
     },
     {

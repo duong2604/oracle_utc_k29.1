@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, Pencil, Trash, Plus } from "lucide-react";
+import { MoreHorizontal, Pencil, Trash, Plus, Eye } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { DataTable } from "@/components/ui/data-table";
 import {
@@ -24,6 +25,7 @@ import { Badge } from "@/components/ui/badge";
 import { useOrders } from "@/hooks/use-orders";
 import { Order } from "@/types";
 import { OrderDialog } from "@/components/orders/order-dialog";
+import { OrderDetailsDialog } from "@/components/orders/order-details-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   AlertDialog,
@@ -42,6 +44,8 @@ export default function OrdersPage() {
   const [selectedOrder, setSelectedOrder] = useState<Order | undefined>();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState<number | null>(null);
+  const [detailsDialogOpen, setDetailsDialogOpen] = useState(false);
+  const [orderToView, setOrderToView] = useState<Order | null>(null);
 
   const columns: ColumnDef<Order>[] = [
     {
@@ -107,6 +111,16 @@ export default function OrdersPage() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => {
+                  setOrderToView(order);
+                  setDetailsDialogOpen(true);
+                }}
+              >
+                <Eye className="mr-2 h-4 w-4" />
+                View Details
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => {
                   setSelectedOrder(order);
@@ -190,6 +204,15 @@ export default function OrdersPage() {
           setSelectedOrder(undefined);
         }}
         order={selectedOrder}
+      />
+
+      <OrderDetailsDialog
+        order={orderToView}
+        open={detailsDialogOpen}
+        onClose={() => {
+          setDetailsDialogOpen(false);
+          setOrderToView(null);
+        }}
       />
 
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>

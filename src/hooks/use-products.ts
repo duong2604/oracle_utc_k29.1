@@ -17,8 +17,8 @@ export const useProducts = () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success("Product created successfully");
     },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.message || "Failed to create product");
+    onError: (error: unknown) => {
+      toast.error(error instanceof Error ? error.message : "Operation failed");
     },
   });
 
@@ -29,8 +29,8 @@ export const useProducts = () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success("Product updated successfully");
     },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.message || "Failed to update product");
+    onError: (error: unknown) => {
+      toast.error(error instanceof Error ? error.message : "Operation failed");
     },
   });
 
@@ -40,8 +40,8 @@ export const useProducts = () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success("Product deleted successfully");
     },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.message || "Failed to delete product");
+    onError: (error: unknown) => {
+      toast.error(error instanceof Error ? error.message : "Operation failed");
     },
   });
 
