@@ -35,17 +35,17 @@ const data = {
   },
   teams: [
     {
-      name: "Oracle Sales",
+      name: "POS Sales",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Oracle Sales",
+      name: "POS Sales",
       logo: AudioWaveform,
       plan: "Startup",
     },
     {
-      name: "Oracle Sales",
+      name: "POS Sales",
       logo: Command,
       plan: "Free",
     },

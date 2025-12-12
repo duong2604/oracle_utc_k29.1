@@ -109,9 +109,9 @@ export function ProductDialog({
     // Ensure categoryId is a valid number
     const validatedData = {
       ...data,
-      categoryId: parseInt(data.categoryId.toString()),
-      price: parseFloat(data.price.toString()),
-      quantity: parseInt(data.quantity.toString()),
+      categoryId: Number.parseInt(data.categoryId.toString()),
+      price: Number.parseFloat(data.price.toString()),
+      quantity: Number.parseInt(data.quantity.toString()),
       variants: variants.length > 0 ? variants : undefined,
     };
 
@@ -199,29 +199,6 @@ export function ProductDialog({
                   </p>
                 )}
               </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="quantity" className="text-sm font-medium">
-                  Quantity *
-                </Label>
-                <Input
-                  id="quantity"
-                  type="number"
-                  placeholder="Available stock"
-                  className="placeholder:text-muted-foreground/60"
-                  {...register("quantity", {
-                    valueAsNumber: true,
-                    validate: (value) =>
-                      value > 0 ||
-                      "Quantity is required and must be at least 1",
-                  })}
-                />
-                {errors.quantity && (
-                  <p className="text-sm text-destructive">
-                    {errors.quantity.message}
-                  </p>
-                )}
-              </div>
             </div>
 
             <div className="grid gap-2">
@@ -234,7 +211,7 @@ export function ProductDialog({
                 }
                 onValueChange={(value) => {
                   console.log("Category selected:", value);
-                  setValue("categoryId", parseInt(value), {
+                  setValue("categoryId", Number.parseInt(value), {
                     shouldValidate: true,
                   });
                   trigger("categoryId");
@@ -370,7 +347,7 @@ export function ProductDialog({
                       onChange={(e) =>
                         setNewVariant({
                           ...newVariant,
-                          stock: parseInt(e.target.value) || 0,
+                          stock: Number.parseInt(e.target.value) || 0,
                         })
                       }
                     />

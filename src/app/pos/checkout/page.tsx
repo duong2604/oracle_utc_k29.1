@@ -124,7 +124,7 @@ export default function CheckoutPage() {
                       </p>
                       <p className="text-sm text-muted-foreground">
                         {selectedCustomer.phone}
-                      </p>
+                      </p>  
                       {selectedCustomer.email && (
                         <p className="text-sm text-muted-foreground">
                           {selectedCustomer.email}
