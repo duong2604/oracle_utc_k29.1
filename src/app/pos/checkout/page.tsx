@@ -22,6 +22,7 @@ export default function CheckoutPage() {
   );
   const [customerDialogOpen, setCustomerDialogOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [hasCheckedOut, setHasCheckedOut] = useState(false);
 
   const totalAmount = getTotalAmount();
 
@@ -62,6 +63,7 @@ export default function CheckoutPage() {
       toast.success("Order created successfully!");
 
       // Clear cart and navigate to receipt
+      setHasCheckedOut(true);
       clearCart();
       router.push(`/pos/receipt/${order.orderId}`);
     } catch (error) {
@@ -72,7 +74,10 @@ export default function CheckoutPage() {
     }
   };
 
-  if (items.length === 0) {
+  // If user navigates to checkout with an empty cart, show an informative screen.
+  // When an order is being processed we keep showing the checkout UI to avoid
+  // a flash of the "Cart is Empty" view right before redirecting to the receipt.
+  if (items.length === 0 && !isProcessing && !hasCheckedOut) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted/30">
         <Card className="max-w-md w-full">
