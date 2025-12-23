@@ -89,7 +89,7 @@ export function ProductDialog({
         );
       }
     } else {
-      reset({ productName: "", price: 0, quantity: 0, categoryId: 0 });
+      reset({ productName: "", price: 0,  categoryId: 0 });
       setVariants([]);
     }
   }, [product, reset]);
@@ -111,7 +111,6 @@ export function ProductDialog({
       ...data,
       categoryId: parseInt(data.categoryId.toString()),
       price: parseFloat(data.price.toString()),
-      quantity: parseInt(data.quantity.toString()),
       variants: variants.length > 0 ? variants : undefined,
     };
 
@@ -196,29 +195,6 @@ export function ProductDialog({
                 {errors.price && (
                   <p className="text-sm text-destructive">
                     {errors.price.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="quantity" className="text-sm font-medium">
-                  Quantity *
-                </Label>
-                <Input
-                  id="quantity"
-                  type="number"
-                  placeholder="Available stock"
-                  className="placeholder:text-muted-foreground/60"
-                  {...register("quantity", {
-                    valueAsNumber: true,
-                    validate: (value) =>
-                      value > 0 ||
-                      "Quantity is required and must be at least 1",
-                  })}
-                />
-                {errors.quantity && (
-                  <p className="text-sm text-destructive">
-                    {errors.quantity.message}
                   </p>
                 )}
               </div>
